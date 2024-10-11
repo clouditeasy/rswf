@@ -1,0 +1,45 @@
+Ensure-AzConnected
+Purpose
+Ensures that the user is authenticated and connected to Azure before executing any Azure-related operations. If the user is not connected, it prompts them to log in.
+
+Description
+Ensure-AzConnected is a PowerShell function designed to verify the current Azure authentication context. It checks whether the user is already logged into Azure using Get-AzContext. If no active context is found (i.e., the user is not logged in), the function initiates the Azure login process by invoking Connect-AzAccount. This ensures that subsequent Azure cmdlets in the script have the necessary authentication to execute successfully.
+
+Key Operations
+Check Azure Connection:
+
+Uses Get-AzContext to determine if there is an active Azure session.
+Evaluates whether an account is associated with the current context.
+Initiate Azure Login:
+
+If no active context is found, the function calls Connect-AzAccount to prompt the user for Azure credentials.
+Handles any errors that occur during the login process, providing appropriate feedback.
+Set Azure Subscription (Optional):
+
+Allows the user to specify a particular Azure subscription to set as the current context after logging in.
+Provide User Feedback:
+
+Informs the user about the connection status, including successful logins and any issues encountered.
+
+Write-Log
+Purpose
+Provides a standardized way to log messages with varying levels of severity (e.g., INFO, DEBUG, WARNING, ERROR) to a designated log file. This facilitates tracking the execution flow, debugging, and auditing script operations.
+
+Description
+Write-Log is a PowerShell function that writes log entries to a specified log file. It accepts a message and a log level, formats the log entry with a timestamp and severity level, and appends it to the log file. This centralized logging mechanism helps in monitoring script activities and diagnosing issues by maintaining a detailed record of events.
+
+Key Operations
+Parameters:
+
+Message: The content of the log entry.
+Level: The severity level of the log (e.g., INFO, DEBUG, WARNING, ERROR).
+Log Entry Formatting:
+
+Prepends each log entry with a timestamp and the specified log level for clarity.
+Log File Handling:
+
+Checks if the log file exists; if not, creates it.
+Appends new log entries to the existing log file without overwriting previous entries.
+Error Handling:
+
+Manages any issues that arise during the logging process, ensuring that logging failures do not halt script execution.
